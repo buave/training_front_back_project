@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: project_db
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    volumes:
+      - db:/data/postgres
+    networks:
+      - backend_network
+    ports:
+      - "5432:5432"
+
+networks:
+  backend_network:
+    driver: bridge
+
+volumes:
+  db:
